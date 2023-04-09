@@ -5,7 +5,7 @@ function Navbar(props) {
     <>
       <nav>
         <div>
-          <Link to="/">Home</Link>
+          <Link to="/CryptoTree">Home</Link>
         </div>
         <div>
           <Link to="/Funders">Get your message</Link>

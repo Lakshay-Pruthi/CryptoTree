@@ -67,7 +67,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home web3={web3} contract={contract} Funding={funding} setFunding={setFunding} userAccount={userAccount} setUserAccount={setUserAccount} />} />
+        <Route path='/CryptoTree' element={<Home web3={web3} contract={contract} Funding={funding} setFunding={setFunding} userAccount={userAccount} setUserAccount={setUserAccount} />} />
         <Route path='/Funders' element={<Funders web3={web3} contract={contract} Funding={funding} />} />
         <Route path='*' element={<Error />} ></Route>
       </Routes>
