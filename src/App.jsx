@@ -45,11 +45,12 @@ function App() {
     provider && web3 && loadContract();
   }, [provider, web3]);
 
-  ethereum.on("accountsChanged", () => {
+
+  window.ethereum && ethereum.on("accountsChanged", () => {
     setUserAccount();
   });
 
-  ethereum.on('chainChanged', (_chainId) => window.location.reload());
+  window.ethereum && ethereum.on('chainChanged', (_chainId) => window.location.reload());
 
 
 
