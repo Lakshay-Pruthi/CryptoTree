@@ -5,12 +5,12 @@ import Funders from './Pages/Funders'
 import Error from './Pages/Error'
 import Web3 from 'web3';
 import CryptoPlant from './contracts/CryptoPlant.json'
+import About from './Pages/About';
 
 function App() {
   const provider = window.ethereum;
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
-  const [funding, setFunding] = useState(null);
   const [userAccount, setUserAccount] = useState(123);
 
 
@@ -51,24 +51,14 @@ function App() {
 
   ethereum.on('chainChanged', (_chainId) => window.location.reload());
 
-  // FUNDING AMOUNT
-
-  useEffect(() => {
-    async function getFundingAmount() {
-      let balance = await web3.eth.getBalance(contract._address);
-      balance = web3.utils.fromWei(balance, "ether");
-      setFunding(balance);
-      console.log(balance);
-    }
-    contract && getFundingAmount();
-  }, [contract, funding]);
 
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/CryptoTree' element={<Home web3={web3} contract={contract} Funding={funding} setFunding={setFunding} userAccount={userAccount} setUserAccount={setUserAccount} />} />
-        <Route path='/Funders' element={<Funders web3={web3} contract={contract} Funding={funding} />} />
+        <Route path='/CryptoTree' element={<Home web3={web3} contract={contract} userAccount={userAccount} setUserAccount={setUserAccount} />} />
+        <Route path='/CryptoTree/Funders' element={<Funders web3={web3} contract={contract} />} />
+        <Route path='/CryptoTree/About' element={<About />} />
         <Route path='*' element={<Error />} ></Route>
       </Routes>
     </BrowserRouter>

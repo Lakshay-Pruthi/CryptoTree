@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Error() {
     return (
         <>
-            <div id="Error">This page doesn't exist. Please go back to <Link to='/' id="ErrorLink">Home</Link></div>
+            <div id="Error">This page doesn't exist. Please go back to <Link to='/CryptoTree' id="ErrorLink">Home</Link></div>
         </>
     )
 }

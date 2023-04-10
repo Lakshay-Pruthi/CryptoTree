@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Form(props) {
-  const { transactionFunction } = props;
+  const { transactionFunction, withdrawFunction, owner, userAccount } = props;
 
   const [transactionStatusMessage, setTransactionStatusMessage] = useState('Plant a Tree')
 
@@ -14,6 +14,7 @@ function Form(props) {
     if (inputMessage == "") inputMessage = "I love my Earth";
     setTransactionStatusMessage('Planting...')
     const answer = await transactionFunction(inputName, inputAmount, inputMessage);
+    console.log(answer)
     answer && setTransactionStatusMessage('Plant a Tree')
 
   }
@@ -35,6 +36,13 @@ function Form(props) {
           <label htmlFor="">Message</label>
         </div>
         <button id="transfer" type="submit">{transactionStatusMessage}</button>
+        {userAccount == owner ? (
+          <button id="withdrawButton" onClick={withdrawFunction}>
+            Withdraw Amount
+          </button>
+        ) : (
+          ""
+        )}
       </form>
     </>
   );

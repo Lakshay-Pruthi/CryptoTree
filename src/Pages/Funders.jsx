@@ -3,7 +3,7 @@ import Navbar from '../Components/Navbar'
 
 function Funders(props) {
 
-    const { web3, contract, Funding } = props;
+    const { web3, contract } = props;
     const [name, setName] = useState(null)
     const [amount, setAmount] = useState(null)
     const [message, setMessage] = useState(null)
@@ -37,12 +37,12 @@ function Funders(props) {
         <>
             <div className="container">
                 <div className="Funder-box">
-                    <Navbar Funding={Funding} />
+                    <Navbar web3={web3} contract={contract} />
                     {detailsFound ? (
                         <div className='userFetchedDetails'>
                             <div><span className='searchResult'>Name</span>: {name}</div>
                             <div><span className='searchResult'>Amount</span>: {amount} sepoliaETH</div>
-                            <div><span className='searchResult'>Message</span>: {message}</div>
+                            <div id='userFetchedMessage'><span className='searchResult'>Message</span>: {message}</div>
                         </div>
                     ) : (
                         <p className='searchResult'>{searchResult}</p>

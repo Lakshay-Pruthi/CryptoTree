@@ -1,13 +1,14 @@
 import Navbar from '../Components/Navbar'
 import Form from '../Components/Form'
 import { useState, useEffect } from "react";
+import { Outlet } from 'react-router';
 
 
 
 
 function Home(props) {
 
-    const { web3, contract, Funding, setFunding, userAccount, setUserAccount } = props;
+    const { web3, contract, userAccount, setUserAccount } = props;
 
 
 
@@ -44,14 +45,19 @@ function Home(props) {
     async function transferFunds(name, amount, message) {
         const address = userAccount;
         amount = web3.utils.toWei(amount, "ether")
-        const transaction = await contract.methods.AddFunder(address, name, amount, message).send({
-            from: userAccount,
-            to: contract._address,
-            value: amount
-        });
 
-        transaction && setFunding();
-        return transaction;
+        try {
+            const transaction = await contract.methods.AddFunder(address, name, amount, message).send({
+                from: userAccount,
+                to: contract._address,
+                value: amount
+            });
+            transaction && setFunding();
+        } catch (error) {
+            console.error('Transaction Cancelled due to some error');
+        }
+        return true;
+
     }
 
     // WITHDRAW FUNDS
@@ -73,17 +79,11 @@ function Home(props) {
 
                 <div className="form-box">
 
-                    <Navbar Funding={Funding} />
+                    <Navbar web3={web3} contract={contract} />
 
-                    <Form transactionFunction={transferFunds} withdrawFunction={withdrawFundingAmount} />
+                    <Form transactionFunction={transferFunds} withdrawFunction={withdrawFundingAmount} owner={owner} userAccount={userAccount} />
 
-                    {userAccount === owner ? (
-                        <button id="withdrawButton" onClick={withdrawFundingAmount}>
-                            Withdraw Amount
-                        </button>
-                    ) : (
-                        ""
-                    )}
+                    <Outlet />
 
                 </div>
             </div>
