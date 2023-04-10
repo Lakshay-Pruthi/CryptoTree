@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Navbar from '../Components/Navbar'
+import Footer from '../Components/Footer'
 
 function Funders(props) {
 
@@ -54,6 +55,7 @@ function Funders(props) {
                     </form>
                 </div>
             </div >
+            <Footer />
         </>
     )
 }

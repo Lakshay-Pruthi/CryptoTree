@@ -1,5 +1,6 @@
 import Navbar from '../Components/Navbar'
 import Form from '../Components/Form'
+import Footer from '../Components/Footer'
 import { useState, useEffect } from "react";
 import { Outlet } from 'react-router';
 
@@ -87,6 +88,7 @@ function Home(props) {
 
                 </div>
             </div>
+            <Footer />
         </>
     )
 }
