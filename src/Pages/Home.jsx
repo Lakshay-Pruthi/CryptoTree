@@ -2,14 +2,12 @@ import Navbar from '../Components/Navbar'
 import Form from '../Components/Form'
 import Footer from '../Components/Footer'
 import { useState, useEffect } from "react";
-import { Outlet } from 'react-router';
-
 
 
 
 function Home(props) {
 
-    const { web3, contract, userAccount, setUserAccount } = props;
+    const { provider, web3, contract, userAccount, setUserAccount } = props;
 
 
 
@@ -79,12 +77,18 @@ function Home(props) {
             <div className="container">
 
                 <div className="form-box">
+                    {provider ? (
+                        <>
+                            <Navbar web3={web3} contract={contract} />
 
-                    <Navbar web3={web3} contract={contract} />
+                            <Form transactionFunction={transferFunds} withdrawFunction={withdrawFundingAmount} owner={owner} userAccount={userAccount} />
+                        </>
+                    )
 
-                    <Form transactionFunction={transferFunds} withdrawFunction={withdrawFundingAmount} owner={owner} userAccount={userAccount} />
+                        :
+                        <p id='impNote'>You need to install Metamask or any other wallet to use this app.</p>
+                    }
 
-                    <Outlet />
 
                 </div>
             </div>

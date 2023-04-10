@@ -13,6 +13,14 @@ body {
   overflow: hidden;
 }
 
+#impNote {
+  font-size: larger;
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  width: 70vw;
+  text-align: center;
+}
+
 nav {
   position: absolute;
   top: 5px;
