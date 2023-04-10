@@ -8,8 +8,8 @@
 }
 
 body {
-  background: url("assets/background.jpg");
-  background-size: cover;
+  background: url("assets/background2.jpg");
+  background-size: contain;
   overflow: hidden;
 }
 
@@ -33,6 +33,7 @@ nav div a {
 }
 
 .container {
+
   width: 80vw;
   height: 80vh;
   display: flex;
